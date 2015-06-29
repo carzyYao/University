@@ -1,0 +1,72 @@
+		<link rel='stylesheet' href='/stylesheets/question.css' />
+    	<script type="text/javascript" src="javascripts/jquery-2.1.1.min.js"></script>
+    	<script type="text/javascript" src="javascripts/question.js"></script>
+
+    	<script>
+    		window.onload = function() {
+    			var t = new Date();
+				var s =  t.getFullYear()+ "年" + (t.getMonth()+1) + "月" + t.getDate()  + "日";
+				document.getElementById('d123').innerHTML = s;
+				document.getElementById('dinput').value = s;
+    		}
+
+    		function func(form){
+				var obj = form;
+		    	if (obj.innerHTML =="請在這裡輸入緣由"){
+		     		obj.innerHTML =""
+				}
+			}
+
+    	</script>
+
+		<style type="text/css">
+			#subButton {
+				height:10%;
+				font-size:20px;
+			}
+			#leaveFile{
+				height:10%;
+				font-size:20px;
+			}
+		</style>
+
+<div class="well">
+	<hr size="5" align="center" noshade width="90%" color="0000ff">
+	<form action ="/leave" method="POST" enctype="multipart/form-data">
+		<p>學生姓名：
+			<span><%= clasmat.first_name%><%= clasmat.last_name%></span>
+			<input name="sname" type="hidden" value="<%= clasmat.first_name%><%= clasmat.last_name%>"></input>
+		</p>
+
+		<p>學號：
+			<span><%= clasmat.username%></span>
+			<input name="sid" type="hidden" value="<%= clasmat.username%>"></input>
+		</p>
+
+		<p>登記日期：
+		<span id="d123"></span>
+		<input id="dinput" type="hidden" name="checkInDate" value="" ></input>
+		</p>
+		
+		<p>開始節次：
+			<span><%= att.s_section%></span>
+			<input type="hidden" name="sSection" value="<%= att.s_section%>"></input>
+		結束節次：
+			<span><%= att.g_section%></span>
+			<input type="hidden" name="gSection" value="<%= att.g_section%>"></input>
+			</p>
+			<script>
+		 	
+		</script>  
+		<span>請假緣由：</span><br>
+		<textarea rows="4" cols="50" style="width:80%;" name="leaveReason" onfocus="func(this)" AutoComplete="Off">請在這裡輸入緣由</textarea>
+
+		<p>請假證明：<input id="leaveFile" name="leaveFile" type="file" size=20></input></p>
+		<p>科目老師：
+			<span><%= user.first_name%><%= user.last_name%></span>
+			<input name="teacher" type="hidden" value="<%= user.first_name%><%= user.last_name%>"></input>
+		</p>
+
+　			<input id="subButton" type="submit" value="確定送出"></input>
+	</form>
+</div>

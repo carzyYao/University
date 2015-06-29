@@ -1,0 +1,17 @@
+<!-- ... 這是題目牆... -->
+<div class="well" style="overflow:auto;height:90%" >
+    <% for (var i = 0; i < data.length; i++) { %>
+    	<%= i+1%>.
+        <div class="btn btn-lg btn-info enterquestion doQuestion" id="q_<%=data[i].eid %>" >進入測驗</div>
+        測驗名稱:<%= data[i].title%>
+        <br><br>
+      <hr>
+
+    <% } %>
+
+	<% if (!data.length) { %>
+    	<div id="tnoq">老師沒有出題</div>
+    <% } %>
+</div>
+
+

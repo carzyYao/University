@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+      <script type="text/javascript" src="javascripts/jquery-2.1.1.min.js"></script>
+
+      <script>
+        $(function() {
+          //當按下測驗進入測驗牆
+          $('.enterQuestion').on('click', function() {
+            $.get('/questionBoard',function(data) {
+              $('.main').html(data);
+
+              $('.doQuestion').on('click', function() {
+                var id = $(this).attr('id');
+                var teid = id.slice(2, id.length);
+                $.get('/question?teid=' + teid,function(data) {
+                  $('.main').html(data);
+
+                  //當按下結束作答,則送出post資料,渲染到sumScore頁面
+                  $('.endQuestion').on('click', function() {
+
+                    if(confirm("確定要結束測驗?")){
+
+                      var formdata = $("#question_form").serialize();
+
+                      console.log("測驗data:" + formdata)
+                      $.post('/question?teid=' + teid, formdata, function(data, status) {
+                        $('.main').html(data);
+                      });
+                    }
+                    else{
+                      
+                    }
+
+                    
+
+                  });
+                });
+              });
+            });
+          });
+
+          $('.enterRecord').on('click', function() {
+            $.get('/checkRecord' ,function(data) {
+              $('.main').html(data);
+            });
+          });
+
+          //進入課表觀看
+          $('.enterCurriculum').on('click', function() {
+            $.get('/curriculum' ,function(data) {
+              $('.main').html(data);
+            });
+          });
+
+
+
+          $('.logout').on('click',function(){
+            $.get('/logout', function(data, status) {
+              console.log(data);
+              window.location = "/login";
+            });
+            
+          });
+
+        });
+      </script>
+  </head>
+
+  <body>
+    <p class="loGoText">Sgate</p>
+    <div class="text-right"><button class="logout btn btn-lg text-right btn-link"> 登出 </button></div>
+    <p class="text-right">[ <%= user_name %> ]Welcome to <%= title %></p>
+    
+    <div class = "menuBar">
+      <button type="button" class="btn btn-lg default enterQuestion"> 測驗 </button>
+      <button class="btn btn-lg default enterRecord" type="button"> 測驗紀錄 </button>
+      <!--
+      <button class="btn btn-lg default enterCurriculum" type="button"> 個人課表 </button>
+        -->
+
+    </div>
+    
+    
+    </br>
+    <div class='main topice_f'></div>
+  </body>
+</html>

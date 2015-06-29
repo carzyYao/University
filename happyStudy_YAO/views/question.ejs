@@ -1,0 +1,20 @@
+<!-- ... 測驗作答... -->
+<div class="well">
+  <form id="question_form" action = "/question" method = "POST" onSubmit="return CheckForm();">
+    <% for (var i = 0; i < result.length; i++) { %>
+
+	    第<%=i+1 %>題. <%= result[i].q_content%>
+      <br>
+        <% for (var j = 0; j < result[i].q_options.length; j++) { %>
+          <input type="radio" name="question_<%=i+1 %>" value="<%= j%>"><%= result[i].q_options[j] %></input>
+        <% } %>
+      <br><hr>
+
+    <% } %>
+  </form>
+
+  <button class="endQuestion btn btn-lg default">結束作答</button>
+  
+</div>
+
+

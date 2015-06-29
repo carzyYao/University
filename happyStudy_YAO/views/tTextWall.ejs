@@ -1,0 +1,46 @@
+<div class="well"  style="overflow:auto;height:90%" >
+
+<%
+	function getStime(timeStr){
+		var sTime ;
+		sTime = new Date(timeStr);
+		return sTime;
+		
+	} 
+%>
+
+<% for (var i = 0; i < data.length; i++) { %>
+
+    考試名稱：<%= data[i].title%><br>
+
+    <% 
+		data[i].s_dt = getStime(data[i].s_dt);
+		data[i].g_dt = getStime(data[i].g_dt);
+    %>
+
+    出題時間： 
+    	<%= data[i].s_dt.getFullYear()%> 年, 
+    	<%= data[i].s_dt.getMonth()+1%> 月,
+    	<%= data[i].s_dt.getDate()%> 日,
+    	<%= data[i].s_dt.getHours()%> 時,
+    	<%= data[i].s_dt.getMinutes()%> 分,
+    	<%= data[i].s_dt.getSeconds()%> 秒
+    	<br>
+
+    考試期限：
+    	<%= data[i].g_dt.getFullYear()%> 年, 
+    	<%= data[i].g_dt.getMonth()+1%> 月,
+    	<%= data[i].g_dt.getDate()%> 日,
+    	<%= data[i].g_dt.getHours()%> 時,
+    	<%= data[i].g_dt.getMinutes()%> 分,
+    	<%= data[i].g_dt.getSeconds()%> 秒
+    	<br>
+  <hr><hr>
+
+<% } %>
+<% if (!data.length) { %>
+	<div id="tnoq" >尚未有出題記錄</div>
+<% } %>
+</div>
+
+

@@ -1,0 +1,51 @@
+<div class="well teacher_OutOf_Question_form" style="overflow:auto;height:100%" >
+  <form id="end_teacher_OutOf_Question_form" name="tofqf" action="/teacher_OutOf_Question" method="POST" onsubmit="return CheckForm(this);">
+    科目：計算機概論 <br>
+
+    題數：總題數共有(<%=q_total %>題)<br>
+
+    測驗名稱
+      <input name="question_name" class="form-control"></input>
+
+    測驗期限
+      <input name="question_deadline1" class="form-control" type="date"  size='8' />
+      <input name="question_deadline2" class="form-control" type="time" />
+
+    <div>
+      難度初：
+      <select class="q_level form-control" name="q_level0" style="display:inline;"> 
+        <% for(i = 0; i <= q_level0; i++){ %>
+          <option value="<%=i %>"> <%=i %> </option>
+        <% } %>
+      </select>
+    
+    <div>
+      難度中：
+      <select class="q_level form-control" name="q_level1" style="display:inline;"> 
+        <% for(i = 0; i <= q_level1; i++){ %>
+          <option value="<%=i %>"> <%=i %> </option>
+        <% } %>
+      </select>
+    </div>
+
+    <div>
+      難度高：
+      <select class="q_level form-control" name="q_level2" style="display:inline;"> 
+        <% for(i = 0; i <= q_level2; i++){ %>
+          <option value="<%=i %>"> <%=i %> </option>
+        <% } %>
+      </select>
+    </div>
+
+    <div>
+      挑戰級：
+      <select class="q_level form-control" name="q_level3" style="display:inline;"> 
+        <% for(i = 0; i <= q_level3; i++){ %>
+          <option value="<%=i %>"> <%=i %> </option>
+        <% } %>
+      </select>
+    </div>
+
+    <button class="end_teacher_OutOf_Question btn btn-lg default">確定出題</button>
+  </form>
+</div>

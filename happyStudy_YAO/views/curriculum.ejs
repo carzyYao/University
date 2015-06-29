@@ -1,0 +1,38 @@
+<!-- ... 這是題目牆... -->
+<div style="overflow:auto;height:95%">
+	this is a 課表!!
+	<table border="3" style="overflow:auto;width:100%;table-layout:fixed" class="curriculumTableSet">
+		<thead>
+			<tr align="center">
+				<td>\</td>
+				<td class="nnl">星期一</td>
+				<td class="nnl">星期二</td>
+				<td class="nnl">星期三</td>
+				<td class="nnl">星期四</td>
+				<td class="nnl">星期五</td>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 資料表主體 -->
+			<%	var d = ds.length;	%>
+
+			<% for(var i = 0; i < 8; i++){ %>
+			<tr align="center">
+				<td><%= i+1 %></td>
+				<!-- 在dataString處理資料 -->
+				<% for(var j = 0; j < 5; j++){ %>
+					<td>
+						<%= ds[j][i] %>
+					</td>
+
+				<% } %>
+			</tr>
+			<% } %>
+			
+			
+		</tbody>
+			
+
+	</table>
+
+</div>

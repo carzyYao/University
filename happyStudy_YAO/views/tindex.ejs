@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+      <script type="text/javascript" src="javascripts/jquery-2.1.1.min.js"></script>
+      <script>
+        function CheckForm(){  
+          if   (!document.tofqf.question_name.value)   {  
+            alert("請輸入考試名稱!");
+            document.tofqf.question_deadline1.focus();
+            return   false;
+          }else if (!document.tofqf.question_deadline1.value){
+            alert("請輸入時間!");
+            document.tofqf.question_deadline2.focus();
+            return   false;
+          }else if (!document.tofqf.question_deadline2.value){
+            alert("請輸入時間!");
+            document.tofqf.question_deadline2.focus();
+            return   false;
+          }
+          return   true;
+        }
+
+      </script>
+      <script>
+        $(function() {
+          //當按下測驗進入老師出題
+          $('.enterQuestion').on('click', function() {
+            $.get('/teacher_OutOf_Question?search=outOfQues', function(data, status) {
+              $('.main').html(data);
+                
+                //關閉html的submit的功能
+                $('#end_teacher_OutOf_Question_form').on('submit', function() {
+                  return false;
+                });
+                //當按下結束出題
+                $('.end_teacher_OutOf_Question').on('click', function() {
+                  var formdata = $("#end_teacher_OutOf_Question_form").serialize();
+
+                  console.log( formdata );
+
+                  $.post('/teacher_OutOf_Question', formdata, function(data, status) {
+                    $('.main').html( data );
+                  });
+                 });
+            });
+          });
+
+          $('.look').on('click', function() {
+            $.get('/teacher_OutOf_Question?search=look', function(data, status) {
+              $('.main').html(data);
+
+            });
+          });
+
+          $('.logout').on('click',function(){
+            $.get('/logout', function(data, status) {
+              console.log(data);
+              window.location = "/login";
+            });
+          });
+
+        });
+      </script>
+  </head>
+
+  <body>
+    <h1>Sgate</h1>
+    <div class="text-right"><button class="logout btn btn-lg btn-link text-right"> 登出 </button></div>
+    <p class="text-right">[ <%= user_name %> ]Welcome to <%= title %></p>
+
+    <div class = "menuBar">
+      <button class="btn btn-lg default enterQuestion" type="button"> 測驗 </button>
+      <button class="btn btn-lg default look" type="button"> 察看考題 </button>
+    </div>
+
+      
+      <div class='main topice_f'></div>
+
+
+  </body>
+</html>

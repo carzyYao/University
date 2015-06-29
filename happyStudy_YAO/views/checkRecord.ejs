@@ -1,0 +1,14 @@
+<div class="well"  style="overflow:auto;height:90%" >
+<% for (var i = 0; i < data.length; i++) { %>
+
+    <%= i+1 %>. 測驗名稱: <%= data[i].exam_title %><br>
+    分數:<font color="red"><%= data[i].score%></font>
+    <br>
+  
+  <hr><hr>
+
+<% } %>
+<% if (!data.length) { %>
+	<div id="tnoq" >尚未有測驗記錄</div>
+<% } %>
+</div>

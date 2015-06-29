@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+
+    <script type="text/javascript" src="javascripts/login.js"></script>
+  </head>
+  <body>
+    <div class= 'login_div'>
+      <p class="loGoText"> Sgate </p>
+      <p>Welcome to <%= title %></p>
+      
+      
+      <form class ="form-signin" name ="login" action = "/login" method = "POST" onsubmit="return CheckForm(this);">
+
+        <input type="text" name="username" id="inputAcc" class="form-control"  placeholder="Student Account" >
+        <input type="password" name="password" class="form-control"  placeholder="Password" >
+
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="登入" >
+        <font color=#ff0000><%= premonition%></font>
+      </form>
+    </div> 
+
+
+    
+  </body>
+</html>

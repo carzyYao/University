@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+      <script type="text/javascript" src="javascripts/jquery-2.1.1.min.js"></script>
+      <style type="text/css">
+        textarea
+        {
+          width:100%;
+          height: 150px;
+          resize: none;
+        }
+      </style>
+
+      <script>
+        $(document).ready(function(){
+          $(".testTextarea").change(function(){
+            $(".submit").removeAttr('disabled');
+          });
+        });
+      </script>
+  </head>
+
+  <body>
+    <h1>Sgate</h1>
+
+    <div id="testTextarea">
+      備註:
+      <textarea class="testTextarea" name="testArea1"></textarea></br>
+    </div>
+
+    <input id="submit" type="button" disabled="disabled" class="btn btn-lg default submit" value="送出"></input>
+
+
+  </body>
+</html>
